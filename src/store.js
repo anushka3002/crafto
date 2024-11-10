@@ -5,7 +5,7 @@ const store = configureStore({
   reducer: {
     loginData: loginReducer,
     mediaUrl: mediaUrlReducer,
-    getQuoteData: getQuoteReducer
+    quoteData: getQuoteReducer
   },
 });
 

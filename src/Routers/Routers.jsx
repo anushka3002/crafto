@@ -7,8 +7,8 @@ const { Route, Routes } = require("react-router")
 const Routers = () => {
     return <Routes>
         <Route path="/" element={<Login />}></Route>
-        <Route path="/Homepage" element={<Homepage />}></Route>
-        <Route path="/CreateQuote" element={<CreateQuote />}></Route>
+        <Route path="/homepage" element={<Homepage />}></Route>
+        <Route path="/createQuote" element={<CreateQuote />}></Route>
     </Routes>
 }
 
