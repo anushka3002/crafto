@@ -16,12 +16,8 @@ const Login = () => {
         username,
         otp
     }
-    dispatch(login(data))
+    dispatch(login(data,navigate))
   };
-
-  useEffect(()=>{
-    navigate('/homepage')
-  },[loginData.status == 200])
 
   return (
     <div>

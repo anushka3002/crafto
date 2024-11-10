@@ -1,7 +1,7 @@
 import axios from "axios";
 import { CREATE_QUOTE_DATA, CREATE_QUOTE_DATA_FAIL, CREATE_QUOTE_DATA_SUCCESS, GET_QUOTE_DATA, GET_QUOTE_DATA_FAIL, GET_QUOTE_DATA_SUCCESS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, MEDIA_URL, MEDIA_URL_FAIL, MEDIA_URL_SUCCESS } from "../Constant/constant"
 
-export const login = (loginData) => async (dispatch) => {
+export const login = (loginData, navigate) => async (dispatch) => {
     try {
         dispatch({
             type: LOGIN
@@ -16,6 +16,7 @@ export const login = (loginData) => async (dispatch) => {
             type: LOGIN_SUCCESS,
             payload: response
         })
+        navigate('/homepage')
     } catch (error) {
         dispatch({
             type: LOGIN_FAIL,
@@ -53,14 +54,14 @@ export const getMediaUrl = (image, text) => async (dispatch) => {
     }
 }
 
-export const getQuote = () => async (dispatch) => {
+export const getQuote = (page) => async (dispatch) => {
     try {
         dispatch({
             type: GET_QUOTE_DATA
         });
         const token = localStorage.getItem('token')
         const response = await axios.get(
-            'https://assignment.stage.crafto.app/getQuotes?limit=100&offset=0',
+            `https://assignment.stage.crafto.app/getQuotes?limit=6&offset=${page}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
