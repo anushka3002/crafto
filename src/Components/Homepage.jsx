@@ -54,10 +54,9 @@ const Homepage = () => {
 
   return (
     <>
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 w-[80%] mx-auto mt-4'>
-        <button onClick={() => handleLogout()} className='fixed right-5 z-10 top-5 bg-gray-400 rounded pt-1 pb-1 px-3 text-white text-sm flex'><p className='my-auto'>Logout</p><img className='my-auto ml-2' width={'15px'} src={logout} /></button>
-        {
-          allData?.map((e) => {
+      <button onClick={() => handleLogout()} className='fixed right-5 z-10 top-5 bg-gray-400 rounded pt-1 pb-1 px-3 text-white text-sm flex'><p className='my-auto'>Logout</p><img className='my-auto ml-2' width={'15px'} src={logout} /></button>
+      {allData?.length > 0 ? <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 w-[80%] mx-auto mt-4'>
+          {allData?.map((e) => {
             return <div ref={scroll}>
               <div className='relative mb-4'>
                 <div className='bg-gray-200'><img className='h-[200px] mx-auto' src={e.mediaUrl ?? sky} /></div>
@@ -73,7 +72,9 @@ const Homepage = () => {
             </div>
           })
         }
-      </div>
+      </div> : !loading && <div class="min-h-screen flex items-center justify-center border">
+        <p class="text-2xl font-bold text-gray-500 text-center">No quotes available. Start by creating your own!</p>
+      </div>}
       <button onClick={() => navigate('/createQuote')} className='fixed bottom-5 right-5 bg-sky-600 py-2 px-4 rounded-lg z-10 text-white text-xl'>Create Quote</button>
     </>
   )
