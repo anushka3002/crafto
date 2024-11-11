@@ -58,7 +58,7 @@ const Login = () => {
                 OTP
               </label>
               <input
-                type="text"
+                type="number"
                 id="otp"
                 value={otp}
                 onChange={(e) => setOtp(e.target.value)}
@@ -66,6 +66,7 @@ const Login = () => {
                 className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter the OTP"
               />
+              {loginData.status == 401 && <p className='text-red-500 text-sm mt-1'>Incorrect OTP</p>}
             </div>
             <button
               type="submit"
