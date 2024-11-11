@@ -61,7 +61,7 @@ export const getQuote = (page) => async (dispatch) => {
         });
         const token = localStorage.getItem('token')
         const response = await axios.get(
-            `https://assignment.stage.crafto.app/getQuotes?limit=6&offset=${page}`,
+            `https://assignment.stage.crafto.app/getQuotes?limit=20&offset=${page}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
