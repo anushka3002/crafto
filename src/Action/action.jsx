@@ -1,7 +1,7 @@
 import axios from "axios";
 import { CREATE_QUOTE_DATA, CREATE_QUOTE_DATA_FAIL, CREATE_QUOTE_DATA_SUCCESS, GET_QUOTE_DATA, GET_QUOTE_DATA_FAIL, GET_QUOTE_DATA_SUCCESS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, MEDIA_URL, MEDIA_URL_FAIL, MEDIA_URL_SUCCESS } from "../Constant/constant"
 
-export const login = (loginData, navigate) => async (dispatch) => {
+export const login = (loginData) => async (dispatch) => {
     try {
         dispatch({
             type: LOGIN
@@ -16,7 +16,6 @@ export const login = (loginData, navigate) => async (dispatch) => {
             type: LOGIN_SUCCESS,
             payload: response
         })
-        navigate('/homepage')
     } catch (error) {
         dispatch({
             type: LOGIN_FAIL,

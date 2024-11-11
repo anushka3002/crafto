@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../Action/action';
 import { useNavigate } from 'react-router';
 import { ClipLoader } from 'react-spinners';
@@ -10,6 +10,8 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [otp, setOtp] = useState('');
   const [loading, setLoading] = useState(false)
+  const {loginData} = useSelector(state=>state.loginData)
+  const token = localStorage.getItem("token")
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -20,12 +22,18 @@ const Login = () => {
     setLoading(true)
     setTimeout(() => {
       setLoading(false);
-      dispatch(login(data, navigate))
+      dispatch(login(data))
     }, 2000);
   };
 
+  useEffect(()=>{
+    if(loginData.status == 200 && token){
+      navigate('/homepage')
+    }
+  },[loginData])
+
   return (
-    <div style={{ backgroundImage: `url('https://images.pexels.com/photos/7130555/pexels-photo-7130555.jpeg?cs=srgb&dl=pexels-codioful-7130555.jpg&fm=jpg')` }} className='h-screen w-screen bg-cover bg-center'>
+    <div className='h-screen w-screen bg-cover bg-center min-h-screen bg-gradient-to-r from-white to-purple-200'>
       <p className='fixed left-4 top-4 text-gray-500'>Crafto.app</p>
       <div className="flex items-center justify-center min-h-screen">
         <div className="w-full mx-4 max-w-md p-8 space-y-4 bg-white rounded-lg shadow-md">
