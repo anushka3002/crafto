@@ -4,6 +4,7 @@ import { login } from '../Action/action';
 import { useNavigate } from 'react-router';
 import { ClipLoader } from 'react-spinners';
 
+// Login page for auth via username and OTP
 const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()

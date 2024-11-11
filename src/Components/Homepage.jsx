@@ -7,8 +7,8 @@ import sky from '../images/sky.jpeg'
 import logout from '../images/logout.png'
 import { LOGIN } from '../Constant/constant';
 
+// Homepage to show all quotes created by user
 const Homepage = () => {
-
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const scroll = useRef()
@@ -19,12 +19,14 @@ const Homepage = () => {
   useEffect(() => {
     let debounceTimer;
     const handleScroll = () => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10 && !loading) {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => {
-          setPage((prevPage) => prevPage + 20);
-          setAllData((prevData) => [...prevData, ...quoteData.data.data])
-        }, 200);
+      if (quoteData?.data?.data?.length > 0) {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10 && !loading) {
+          clearTimeout(debounceTimer);
+          debounceTimer = setTimeout(() => {
+            setPage((prevPage) => prevPage + 20);
+            setAllData((prevData) => [...prevData, ...quoteData.data.data])
+          }, 200);
+        }
       }
     };
 
@@ -44,23 +46,23 @@ const Homepage = () => {
       setAllData(quoteData?.data?.data)
   }, [quoteData])
 
-  const handleLogout = () =>{
-    localStorage.setItem("token",null)
+  const handleLogout = () => {
+    localStorage.setItem("token", null)
     navigate('/')
-    dispatch({type:LOGIN})
+    dispatch({ type: LOGIN })
   }
 
   return (
     <>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 w-[80%] mx-auto mt-4'>
-        <button onClick={()=>handleLogout()} className='fixed right-5 z-10 top-5 bg-gray-400 rounded pt-1 pb-1 px-3 text-white text-sm flex'><p className='my-auto'>Logout</p><img className='my-auto ml-2' width={'15px'} src={logout}/></button>
+        <button onClick={() => handleLogout()} className='fixed right-5 z-10 top-5 bg-gray-400 rounded pt-1 pb-1 px-3 text-white text-sm flex'><p className='my-auto'>Logout</p><img className='my-auto ml-2' width={'15px'} src={logout} /></button>
         {
           allData?.map((e) => {
             return <div ref={scroll}>
               <div className='relative mb-4'>
                 <div className='bg-gray-200'><img className='h-[200px] mx-auto' src={e.mediaUrl ?? sky} /></div>
                 <div className="absolute mx-auto w-[20%] inset-0 flex items-center justify-center">
-                  <p className="drop-shadow-lg text-center text-white text-md font-bold">
+                  <p className="drop-shadow-lg text-center bg-gray-500 bg-opacity-50 px-3 py-1 rounded-md text-white text-md font-bold">
                     {e.text.split(" ").length > 10
                       ? e.text.split(" ").slice(0, 10).join(" ") + "..."
                       : e.text}

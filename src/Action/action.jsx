@@ -1,6 +1,7 @@
 import axios from "axios";
 import { CREATE_QUOTE_DATA, CREATE_QUOTE_DATA_FAIL, CREATE_QUOTE_DATA_SUCCESS, GET_QUOTE_DATA, GET_QUOTE_DATA_FAIL, GET_QUOTE_DATA_SUCCESS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, MEDIA_URL, MEDIA_URL_FAIL, MEDIA_URL_SUCCESS } from "../Constant/constant"
 
+// auth API
 export const login = (loginData) => async (dispatch) => {
     try {
         dispatch({
@@ -24,6 +25,7 @@ export const login = (loginData) => async (dispatch) => {
     }
 }
 
+// API to convert image into url
 export const getMediaUrl = (image, text) => async (dispatch) => {
     try {
         dispatch({
@@ -53,6 +55,7 @@ export const getMediaUrl = (image, text) => async (dispatch) => {
     }
 }
 
+// API to get all the quotes created by users
 export const getQuote = (page) => async (dispatch) => {
     try {
         dispatch({
@@ -80,6 +83,7 @@ export const getQuote = (page) => async (dispatch) => {
     }
 }
 
+// API to create quote by posting image and text
 export const createQuote = (data) => async (dispatch) => {
     try {
         dispatch({

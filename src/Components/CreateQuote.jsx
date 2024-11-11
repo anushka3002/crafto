@@ -4,6 +4,7 @@ import { getMediaUrl } from '../Action/action';
 import backArrow from '../images/back-arrow.jpg'
 import { useNavigate } from 'react-router';
 
+// CreateQuote page to let user create quote by uploading image and text
 const CreateQuote = () => {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
